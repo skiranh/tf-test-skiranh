@@ -732,9 +732,9 @@ class TestSerialL3MultihomingFeatures(
                 self.node2.append(self.inputs.host_data[host]['name'])
 
         self.inputs.restart_service(
-            'contrail-vrouter-agent', [self.node1[0]], container='agent')
+            'contrail-vrouter-agent', self.host_ips[5], container='agent')
         cluster_status, error_nodes = ContrailStatusChecker(
-        ).wait_till_contrail_cluster_stable(nodes=[self.node1[0]])
+        ).wait_till_contrail_cluster_stable(nodes=self.host_ips[5])
         assert cluster_status, 'Hash of error nodes and services : %s' % (
             error_nodes)
 
